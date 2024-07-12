@@ -2,3 +2,17 @@
 ---
 spring:
   application.name: discovery
+  config.import: "optional:configserver:"
+  cloud.config.uri: http://localhost:8888
+server.port: 8761
+
+eureka.client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+---
+spring:
+  config:
+    activate.on-profile: docker
+    import: "configserver:"
+  cloud.config.uri: http://config:8080
